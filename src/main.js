@@ -11,10 +11,21 @@ const askQuestion = (query) => {
     return new Promise(resolve => rl.question(query, resolve));
 };
 
+const getValidatedInput = async (query, validator) => {
+    let input;
+    do {
+        input = parseInt(await askQuestion(query));
+        if (!validator(input)) {
+            console.log("Invalid Input");
+        }
+    } while (!validator(input));
+    return input;
+};
+
 const createPlayer = async (name) => {
-    const health = parseInt(await askQuestion(`Enter health for ${name}: `));
-    const strength = parseInt(await askQuestion(`Enter strength for ${name}: `));
-    const attack = parseInt(await askQuestion(`Enter attack for ${name}: `));
+    const health = await getValidatedInput(`Enter health for ${name}: `, (value) => value > 0);
+    const strength = await getValidatedInput(`Enter strength for ${name}: `, (value) => value > 0);
+    const attack = await getValidatedInput(`Enter attack for ${name}: `, (value) => value > 0);
 
     return new Player(name, health, strength, attack);
 };
@@ -37,4 +48,3 @@ module.exports = {
 };
 
 startGame();
-
