@@ -1,0 +1,17 @@
+{
+  "name": "magical-arena",
+  "version": "1.0.0",
+  "description": "A dice based game fight",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Sunil Kumar",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "dependencies": {
+    "readline": "^1.3.0"
+  }
+}
